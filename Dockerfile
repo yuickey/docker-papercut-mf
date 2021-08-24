@@ -6,7 +6,19 @@ LABEL description="PaperCut MF Application Server"
 RUN useradd -mUd /papercut -s /bin/bash papercut
 
 # Installing necessary pacakges and cleaning up
-RUN apt-get update && apt-get install -y curl cpio cups && apt-get clean && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install -y curl cpio cups && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y \
+       cpio \
+       cups \
+       cups-daemon \
+       curl \
+       samba \
+       wget \
+       net-tools \
+       iptables \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV PAPERCUT_MAJOR_VER 21.x
 ENV PAPERCUT_VER 21.0.4.57587
